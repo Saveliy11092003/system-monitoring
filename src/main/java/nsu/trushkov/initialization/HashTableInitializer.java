@@ -2,15 +2,17 @@ package nsu.trushkov.initialization;
 
 import java.util.Map;
 
-public class HashTableInitializer {
+/**
+ * Interface for initializing two hash tables.
+ * <p>
+ * Classes that implement this interface must implement initialization logic two hash tables.
+ */
+public interface HashTableInitializer {
 
-    public void init(Map<String, String> yesterdayTable, Map<String, String> todayTable) {
-        yesterdayTable.put("http://example.com/page1", "<html>New content 1</html>");
-        yesterdayTable.put("http://example.com/page2", "<html>Old content 2</html>");
-        yesterdayTable.put("http://example.com/page3", "<html>Old content 3</html>");
-
-        todayTable.put("http://example.com/page1", "<html>New content 1</html>");
-        todayTable.put("http://example.com/page6", "<html>Old content 2</html>");
-        todayTable.put("http://example.com/page4", "<html>New content 4</html>");
-    }
+    /**
+     * This method is needed to init two hash table (key - url, value - html code of the matching url)
+     * @param yesterdayTable yesterday's hash table
+     * @param todayTable     today's hash table
+     */
+    void init(Map<String, String> yesterdayTable, Map<String, String> todayTable);
 }

@@ -10,8 +10,22 @@ import java.util.*;
 import static nsu.trushkov.model.enumeration.IncorrectTable.INCORRECT_TABLE_TODAY;
 import static nsu.trushkov.model.enumeration.IncorrectTable.INCORRECT_TABLE_YESTERDAY;
 
+/**
+ * This class is needed to check tables for data correctness.
+ * <p>
+ * In more detail, this class is used to check the correctness of urls, pages and tables
+ */
 public class CheckerTables {
 
+    /**
+     * This method checks hash tables.
+     * <p>
+     * The key of hash table is the url, the value of hash table is the html code of the matching url.
+     * In more detail, this method checks the correctness of urls, pages and tables
+     * @param yesterdayTable yesterday's hash table
+     * @param todayTable     today's hash table
+     * @return record that contains erroneous data
+     */
     public ExceptionData check(Map<String, String> yesterdayTable, Map<String, String> todayTable) {
 
         Set<IncorrectTable> incorrectTables = new HashSet<>();

@@ -1,5 +1,17 @@
 package nsu.trushkov.model.enumeration;
 
+import nsu.trushkov.model.ExceptionData;
+
+/**
+ * This enum is required to mark the incorrect table in {@link ExceptionData}
+ */
 public enum IncorrectTable {
-    INCORRECT_TABLE_YESTERDAY, INCORRECT_TABLE_TODAY
+    /**
+     * Yesterday's table is null
+     */
+    INCORRECT_TABLE_YESTERDAY,
+    /**
+     * Today's table is null
+     */
+    INCORRECT_TABLE_TODAY
 }

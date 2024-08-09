@@ -1,9 +1,8 @@
 package nsu.trushkov.handler;
 
 import nsu.trushkov.checker.CheckerTables;
-import nsu.trushkov.model.Data;
+import nsu.trushkov.model.DataForReport;
 import nsu.trushkov.model.ExceptionData;
-import nsu.trushkov.model.enumeration.IncorrectTable;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -12,22 +11,36 @@ import java.util.Set;
 import static nsu.trushkov.model.enumeration.IncorrectTable.INCORRECT_TABLE_TODAY;
 import static nsu.trushkov.model.enumeration.IncorrectTable.INCORRECT_TABLE_YESTERDAY;
 
+/**
+ * This class is used to generate report based on yesterday's and today's tables.
+ * <p>
+ * This class is needed to collect a report, which consists of pages that have appeared, disappeared, and changed.
+ */
 public class HashTableHandler {
 
-    public Data handle(Map<String, String> yesterdayTable, Map<String, String> todayTable) {
+    /**
+     * This method generates {@link DataForReport}.
+     * <p>
+     * The method generates {@link DataForReport} that containing appeared, disappeared, changed pages and error info.
+     * Incorrect pages are removed from these pages to return correct information.
+     * @param yesterdayTable yesterday's hash table
+     * @param todayTable     today's hash table
+     * @return data that containing appeared, disappeared, changed pages and error information
+     */
+    public DataForReport handle(Map<String, String> yesterdayTable, Map<String, String> todayTable) {
 
         ExceptionData exceptionData = new CheckerTables().check(yesterdayTable, todayTable);
 
         if (!exceptionData.incorrectTables().isEmpty()) {
             if (exceptionData.incorrectTables().contains(INCORRECT_TABLE_YESTERDAY) &&
             exceptionData.incorrectTables().contains(INCORRECT_TABLE_TODAY)) {
-                return new Data(null, null, null, exceptionData);
+                return new DataForReport(null, null, null, exceptionData);
             }
             if (exceptionData.incorrectTables().contains(INCORRECT_TABLE_TODAY)) {
-                return new Data(yesterdayTable.keySet(), null, null, exceptionData);
+                return new DataForReport(yesterdayTable.keySet(), null, null, exceptionData);
             }
             if (exceptionData.incorrectTables().contains(INCORRECT_TABLE_YESTERDAY)){
-                return new Data(null, todayTable.keySet(), null, exceptionData);
+                return new DataForReport(null, todayTable.keySet(), null, exceptionData);
             }
         }
 
@@ -49,7 +62,7 @@ public class HashTableHandler {
         }
         changedUrls.removeAll(exceptionData.incorrectUrls());
         changedUrls.removeAll(exceptionData.urlsWithIncorrectPages());
-        return new Data(disappearedUrls, appearedUrls,changedUrls, exceptionData);
+        return new DataForReport(disappearedUrls, appearedUrls,changedUrls, exceptionData);
     }
 
 }
