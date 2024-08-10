@@ -1,5 +1,6 @@
 package nsu.trushkov;
 
+import nsu.trushkov.builder.ReportCreator;
 import nsu.trushkov.handler.HashTableHandler;
 import nsu.trushkov.initialization.ExampleHashTableInitializer;
 import nsu.trushkov.initialization.HashTableInitializer;
@@ -19,6 +20,12 @@ public class Main {
 
     private static final Logger log = LoggerFactory.getLogger(Main.class);
 
+    private final SystemMonitoring systemMonitoring;
+
+    public Main(SystemMonitoring systemMonitoring) {
+        this.systemMonitoring = systemMonitoring;
+    }
+
     /**
      * The main method is the entry point of the application.
      * <p>
@@ -27,12 +34,14 @@ public class Main {
      */
     public static void main(String[] args) {
         log.info("Application starts");
-        HashTableInitializer initializer = new ExampleHashTableInitializer();
-        HashTableHandler handler = new HashTableHandler();
-        ReportWriter writer = new ConsoleReportWriter();
-
-        SystemMonitoring systemMonitoring = new SystemMonitoring(initializer, handler, writer);
-        systemMonitoring.generateReport();
+        Main main = new Main(new SystemMonitoring(new ExampleHashTableInitializer(), new HashTableHandler(),
+                new ConsoleReportWriter(new ReportCreator())));
+        main.run();
         log.info("Application ended");
     }
+
+    public void run() {
+        systemMonitoring.generateReport();
+    }
+
 }

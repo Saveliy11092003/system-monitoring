@@ -11,12 +11,16 @@ import org.slf4j.LoggerFactory;
  */
 public class ConsoleReportWriter implements ReportWriter{
 
-
+    private final ReportCreator reportCreator;
     private static final Logger log = LoggerFactory.getLogger(ConsoleReportWriter.class);
+
+    public ConsoleReportWriter(ReportCreator reportCreator) {
+        this.reportCreator = reportCreator;
+    }
 
     public void write(DataForReport data) {
         log.debug("DataForReport - {}", data);
-        String report = new ReportCreator().buildReport(data);
+        String report = reportCreator.buildReport(data);
         System.out.println(report);
     }
 
