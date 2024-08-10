@@ -6,6 +6,8 @@ import nsu.trushkov.initialization.HashTableInitializer;
 import nsu.trushkov.service.SystemMonitoring;
 import nsu.trushkov.writer.ConsoleReportWriter;
 import nsu.trushkov.writer.ReportWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Main class contains the entry point for the application.
@@ -14,6 +16,9 @@ import nsu.trushkov.writer.ReportWriter;
  */
 public class Main {
 
+
+    private static final Logger log = LoggerFactory.getLogger(Main.class);
+
     /**
      * The main method is the entry point of the application.
      * <p>
@@ -21,11 +26,13 @@ public class Main {
      * @param args command line arguments
      */
     public static void main(String[] args) {
+        log.info("Application starts");
         HashTableInitializer initializer = new ExampleHashTableInitializer();
         HashTableHandler handler = new HashTableHandler();
         ReportWriter writer = new ConsoleReportWriter();
 
         SystemMonitoring systemMonitoring = new SystemMonitoring(initializer, handler, writer);
         systemMonitoring.generateReport();
+        log.info("Application ended");
     }
 }

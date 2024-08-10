@@ -3,6 +3,8 @@ package nsu.trushkov.handler;
 import nsu.trushkov.checker.CheckerTables;
 import nsu.trushkov.model.DataForReport;
 import nsu.trushkov.model.ExceptionData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -18,6 +20,8 @@ import static nsu.trushkov.model.enumeration.IncorrectTable.INCORRECT_TABLE_YEST
  */
 public class HashTableHandler {
 
+    private static final Logger log = LoggerFactory.getLogger(HashTableHandler.class);
+
     /**
      * This method generates {@link DataForReport}.
      * <p>
@@ -28,41 +32,63 @@ public class HashTableHandler {
      * @return data that containing appeared, disappeared, changed pages and error information
      */
     public DataForReport handle(Map<String, String> yesterdayTable, Map<String, String> todayTable) {
-
         ExceptionData exceptionData = new CheckerTables().check(yesterdayTable, todayTable);
+        log.debug("ExceptionData - {}", exceptionData);
 
         if (!exceptionData.incorrectTables().isEmpty()) {
-            if (exceptionData.incorrectTables().contains(INCORRECT_TABLE_YESTERDAY) &&
-            exceptionData.incorrectTables().contains(INCORRECT_TABLE_TODAY)) {
-                return new DataForReport(null, null, null, exceptionData);
-            }
-            if (exceptionData.incorrectTables().contains(INCORRECT_TABLE_TODAY)) {
-                return new DataForReport(yesterdayTable.keySet(), null, null, exceptionData);
-            }
-            if (exceptionData.incorrectTables().contains(INCORRECT_TABLE_YESTERDAY)){
-                return new DataForReport(null, todayTable.keySet(), null, exceptionData);
-            }
+            return handleIncorrectTable(yesterdayTable, todayTable, exceptionData);
         }
 
+        Set<String> disappearedUrls = getDisappearedUrls(yesterdayTable, todayTable, exceptionData);
+        Set<String> appearedUrls = getAppearedUrls(yesterdayTable, todayTable, exceptionData);
+        Set<String> changedUrls = getChangedUrls(yesterdayTable, todayTable, exceptionData);
+
+        return new DataForReport(disappearedUrls, appearedUrls,changedUrls, exceptionData);
+    }
+
+    private Set<String> getDisappearedUrls(Map<String, String> yesterdayTable, Map<String, String> todayTable,
+                                           ExceptionData exceptionData) {
         Set<String> disappearedUrls = new HashSet<>(yesterdayTable.keySet());
         disappearedUrls.removeAll(todayTable.keySet());
-        disappearedUrls.removeAll(exceptionData.incorrectUrls());
-        disappearedUrls.removeAll(exceptionData.urlsWithIncorrectPages());
+        removeIncorrectData(disappearedUrls, exceptionData);
+        return disappearedUrls;
+    }
 
+    private Set<String> getAppearedUrls(Map<String, String> yesterdayTable, Map<String, String> todayTable,
+                                        ExceptionData exceptionData) {
         Set<String> appearedUrls = new HashSet<>(todayTable.keySet());
         appearedUrls.removeAll(yesterdayTable.keySet());
-        appearedUrls.removeAll(exceptionData.incorrectUrls());
-        appearedUrls.removeAll(exceptionData.urlsWithIncorrectPages());
+        removeIncorrectData(appearedUrls, exceptionData);
+        return appearedUrls;
+    }
 
+    private Set<String> getChangedUrls(Map<String, String> yesterdayTable, Map<String, String> todayTable,
+                                       ExceptionData exceptionData) {
         Set<String> changedUrls = new HashSet<>();
         for (String url : yesterdayTable.keySet()) {
             if (todayTable.containsKey(url) && !todayTable.get(url).equals(yesterdayTable.get(url))) {
                 changedUrls.add(url);
             }
         }
-        changedUrls.removeAll(exceptionData.incorrectUrls());
-        changedUrls.removeAll(exceptionData.urlsWithIncorrectPages());
-        return new DataForReport(disappearedUrls, appearedUrls,changedUrls, exceptionData);
+        removeIncorrectData(changedUrls, exceptionData);
+        return changedUrls;
+    }
+
+    private void removeIncorrectData(Set<String> urls, ExceptionData exceptionData) {
+        urls.removeAll(exceptionData.incorrectUrls());
+        urls.removeAll(exceptionData.urlsWithIncorrectPages());
+    }
+
+    private DataForReport handleIncorrectTable(Map<String, String> yesterdayTable, Map<String, String> todayTable,
+                                               ExceptionData exceptionData) {
+        if (exceptionData.incorrectTables().contains(INCORRECT_TABLE_YESTERDAY) &&
+                exceptionData.incorrectTables().contains(INCORRECT_TABLE_TODAY)) {
+            return new DataForReport(null, null, null, exceptionData);
+        } else if (exceptionData.incorrectTables().contains(INCORRECT_TABLE_TODAY)) {
+            return new DataForReport(yesterdayTable.keySet(), null, null, exceptionData);
+        } else {
+            return new DataForReport(null, todayTable.keySet(), null, exceptionData);
+        }
     }
 
 }
