@@ -1,11 +1,11 @@
 package nsu.trushkov.service;
 
 import nsu.trushkov.handler.HashTableHandler;
-import nsu.trushkov.initialization.ExampleHashTableInitializer;
 import nsu.trushkov.initialization.HashTableInitializer;
 import nsu.trushkov.model.DataForReport;
-import nsu.trushkov.writer.ConsoleReportWriter;
 import nsu.trushkov.writer.ReportWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +19,7 @@ import java.util.Map;
  */
 public class SystemMonitoring {
 
+    private static final Logger log = LoggerFactory.getLogger(SystemMonitoring.class);
     private final HashTableInitializer initializer;
     private final HashTableHandler handler;
     private final ReportWriter reportWriter;
@@ -43,7 +44,10 @@ public class SystemMonitoring {
         Map<String, String> todayPages = new HashMap<>();
 
         initializer.init(yesterdayPages, todayPages);
+        log.info("Initialization of tables ended");
         DataForReport data = handler.handle(yesterdayPages, todayPages);
+        log.info("Data for report was generated");
         reportWriter.write(data);
+        log.info("Report sent");
     }
 }

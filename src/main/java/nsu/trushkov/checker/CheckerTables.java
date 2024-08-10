@@ -2,6 +2,9 @@ package nsu.trushkov.checker;
 
 import nsu.trushkov.model.ExceptionData;
 import nsu.trushkov.model.enumeration.IncorrectTable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,6 +20,9 @@ import static nsu.trushkov.model.enumeration.IncorrectTable.INCORRECT_TABLE_YEST
  */
 public class CheckerTables {
 
+
+    private static final Logger log = LoggerFactory.getLogger(CheckerTables.class);
+
     /**
      * This method checks hash tables.
      * <p>
@@ -27,7 +33,8 @@ public class CheckerTables {
      * @return record that contains erroneous data
      */
     public ExceptionData check(Map<String, String> yesterdayTable, Map<String, String> todayTable) {
-
+        log.debug("Yesterday's table - {}", yesterdayTable);
+        log.debug("Today's table - {}", todayTable);
         Set<IncorrectTable> incorrectTables = new HashSet<>();
         Set<String> incorrectUrls = new HashSet<>();
         Set<String> urlsWithIncorrectPages = new HashSet<>();
@@ -46,10 +53,12 @@ public class CheckerTables {
         boolean isCorrectTables = true;
         if (yesterdayTable == null) {
             incorrectTables.add(INCORRECT_TABLE_YESTERDAY);
+            log.warn("Yesterday's table is null");
             isCorrectTables = false;
         }
         if (todayTable == null) {
             incorrectTables.add(INCORRECT_TABLE_TODAY);
+            log.warn("Today's table is null");
             isCorrectTables = false;
         }
         return isCorrectTables;
@@ -62,6 +71,7 @@ public class CheckerTables {
                 URL checkUrl = new URL(url);
             } catch (MalformedURLException exception) {
                 incorrectUrls.add(url);
+                log.warn("Incorrect url - {}", url);
             }
         }
     }
@@ -70,6 +80,7 @@ public class CheckerTables {
         for (Map.Entry<String, String> entry : table.entrySet()) {
             if (entry.getValue() == null) {
                 urlsWithIncorrectPages.add(entry.getKey());
+                log.warn("Page of {} is null", entry.getKey());
             }
         }
     }

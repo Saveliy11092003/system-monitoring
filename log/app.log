@@ -1,0 +1,31 @@
+2024-08-10 18:50:22,561 INFO n.t.Main [main] Application starts
+2024-08-10 18:50:22,562 INFO n.t.s.SystemMonitoring [main] Initialization of tables ended
+2024-08-10 18:50:22,563 DEBUG n.t.c.CheckerTables [main] Yesterday's table - {http://example.com/page1=<html>New content 1</html>, http://example.com/page2=<html>Old content 2</html>, http://example.com/page3=<html>Old content 3</html>}
+2024-08-10 18:50:22,563 DEBUG n.t.c.CheckerTables [main] Today's table - {http://example.com/page1=<html>New content 1</html>, http://example.com/page6=<html>Old content 2</html>, http://example.com/page4=<html>New content 4</html>}
+2024-08-10 18:50:22,564 DEBUG n.t.h.HashTableHandler [main] ExceptionData - ExceptionData[incorrectTables=[], incorrectUrls=[], urlsWithIncorrectPages=[]]
+2024-08-10 18:50:22,577 INFO n.t.s.SystemMonitoring [main] Data for report was generated
+2024-08-10 18:50:22,577 DEBUG n.t.w.ConsoleReportWriter [main] DataForReport - DataForReport[disappearedUrls=[http://example.com/page2, http://example.com/page3], appearedUrls=[http://example.com/page6, http://example.com/page4], changedUrls=[], exceptionData=ExceptionData[incorrectTables=[], incorrectUrls=[], urlsWithIncorrectPages=[]]]
+2024-08-10 18:50:22,581 INFO n.t.s.SystemMonitoring [main] Report sent
+2024-08-10 18:50:22,581 INFO n.t.Main [main] Application ended
+
+
+2024-08-10 19:15:08,518 INFO n.t.Main [main] Application starts
+2024-08-10 19:15:08,520 INFO n.t.s.SystemMonitoring [main] Initialization of tables ended
+2024-08-10 19:15:08,520 DEBUG n.t.c.CheckerTables [main] Yesterday's table - {http://example.com/page1=<html>New content 1</html>, http://example.com/page2=<html>Old content 2</html>, http://example.com/page3=<html>Old content 3</html>}
+2024-08-10 19:15:08,521 DEBUG n.t.c.CheckerTables [main] Today's table - {http://example.com/page1=<html>New content 1</html>, http://example.com/page6=<html>Old content 2</html>, http://example.com/page4=<html>New content 4</html>}
+2024-08-10 19:15:08,522 DEBUG n.t.h.HashTableHandler [main] ExceptionData - ExceptionData[incorrectTables=[], incorrectUrls=[], urlsWithIncorrectPages=[]]
+2024-08-10 19:15:08,534 INFO n.t.s.SystemMonitoring [main] Data for report was generated
+2024-08-10 19:15:08,534 DEBUG n.t.w.ConsoleReportWriter [main] DataForReport - DataForReport[disappearedUrls=[http://example.com/page2, http://example.com/page3], appearedUrls=[http://example.com/page6, http://example.com/page4], changedUrls=[], exceptionData=ExceptionData[incorrectTables=[], incorrectUrls=[], urlsWithIncorrectPages=[]]]
+2024-08-10 19:15:08,539 INFO n.t.s.SystemMonitoring [main] Report sent
+2024-08-10 19:15:08,539 INFO n.t.Main [main] Application ended
+
+
+2024-08-10 19:15:31,538 INFO n.t.Main [main] Application starts
+2024-08-10 19:15:31,539 INFO n.t.s.SystemMonitoring [main] Initialization of tables ended
+2024-08-10 19:15:31,540 DEBUG n.t.c.CheckerTables [main] Yesterday's table - {http://example.com/page1=<html>New content 1</html>, http://example.com/page2=<html>Old content 2</html>, http://example.com/page3=<html>Old content 3</html>}
+2024-08-10 19:15:31,540 DEBUG n.t.c.CheckerTables [main] Today's table - {http://example.com/page1=<html>New content 1</html>, http://example.com/page6=<html>Old content 2</html>, http://example.com/page4=<html>New content 4</html>}
+2024-08-10 19:15:31,541 DEBUG n.t.h.HashTableHandler [main] ExceptionData - ExceptionData[incorrectTables=[], incorrectUrls=[], urlsWithIncorrectPages=[]]
+2024-08-10 19:15:31,553 INFO n.t.s.SystemMonitoring [main] Data for report was generated
+2024-08-10 19:15:31,554 DEBUG n.t.w.ConsoleReportWriter [main] DataForReport - DataForReport[disappearedUrls=[http://example.com/page2, http://example.com/page3], appearedUrls=[http://example.com/page6, http://example.com/page4], changedUrls=[], exceptionData=ExceptionData[incorrectTables=[], incorrectUrls=[], urlsWithIncorrectPages=[]]]
+2024-08-10 19:15:31,558 INFO n.t.s.SystemMonitoring [main] Report sent
+2024-08-10 19:15:31,558 INFO n.t.Main [main] Application ended
