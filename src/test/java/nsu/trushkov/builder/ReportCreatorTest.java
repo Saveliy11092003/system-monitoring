@@ -228,15 +228,15 @@ class ReportCreatorTest {
     }
 
     private void addMessageIncorrectTables(StringBuilder report) {
-        report.append("К сожалению, мне были переданы некорректные таблицы с данными\n");
+        report.append("\nК сожалению, мне были переданы некорректные таблицы с данными\n");
     }
 
     private void addErrorInformation(StringBuilder report) {
-        report.append("Были найдены следующие несуществующие страницы:\n");
+        report.append("\nБыли найдены следующие несуществующие страницы:\n");
         report.append("htt://example.com/page7").append("\n");
         report.append("htt://example.com/page9").append("\n");
 
-        report.append("Были переданы следующие страницы с некорректным содержимыи:\n");
+        report.append("\nБыли переданы следующие страницы с некорректным содержимыи:\n");
         report.append("http://example.com/page8").append("\n");
     }
 

@@ -6,32 +6,20 @@ group = 'nsu.trushkov'
 version = '1.0-SNAPSHOT'
 
 repositories {
-    mavenCentral()    //testImplementation 'org.mockito:mockito-jupiter:5.12.0'
-
-    // https://mvnrepository.com/artifact/org.mockito/mockito-core
-   // testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.12.0'
-
+    mavenCentral()
 }
 
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
-    //testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.10.3'
-
 
     // implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.12.0'
     implementation 'org.slf4j:slf4j-api:1.7.27'
     implementation 'ch.qos.logback:logback-core:1.2.3'
     implementation 'ch.qos.logback:logback-classic:1.2.3'
 
-    // https://mvnrepository.com/artifact/org.mockito/mockito-core
     testImplementation 'org.mockito:mockito-core:5.12.0'
-
-    // https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
     testImplementation 'org.mockito:mockito-junit-jupiter:5.12.0'
-
-
 }
 
 java {
@@ -45,6 +33,17 @@ tasks.withType(Javadoc) {
         encoding = 'UTF-8'
         charSet = 'UTF-8'
         links("https://docs.oracle.com/en/java/javase/17/docs/api/")
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'nsu.trushkov.Main'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
 
