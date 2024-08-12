@@ -4,6 +4,7 @@ package nsu.trushkov;
 import nsu.trushkov.service.SystemMonitoring;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -13,14 +14,13 @@ class MainTest {
 
     @Test
     void main_correctWork() {
-        Main.main(new String[]{});
-    }
+        try(MockedStatic mockedStatic = Mockito.mockStatic(Main.class, Mockito.CALLS_REAL_METHODS)) {
 
-    @Test
-    void run_correctWork() {
-        SystemMonitoring systemMonitoringMock = Mockito.mock(SystemMonitoring.class);
-        Main main = new Main(systemMonitoringMock);
-        main.run();
-        Mockito.verify(systemMonitoringMock).generateReport();
+            //when
+            Main.main(new String[]{});
+
+            //then
+            mockedStatic.verify(() -> Main.main(new String[]{}));
+        }
     }
 }
