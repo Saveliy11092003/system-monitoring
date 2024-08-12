@@ -83,11 +83,11 @@ public class HashTableHandler {
                                                ExceptionData exceptionData) {
         if (exceptionData.incorrectTables().contains(INCORRECT_TABLE_YESTERDAY) &&
                 exceptionData.incorrectTables().contains(INCORRECT_TABLE_TODAY)) {
-            return new DataForReport(null, null, null, exceptionData);
+            return new DataForReport(new HashSet<>(), new HashSet<>(), new HashSet<>(), exceptionData);
         } else if (exceptionData.incorrectTables().contains(INCORRECT_TABLE_TODAY)) {
-            return new DataForReport(yesterdayTable.keySet(), null, null, exceptionData);
+            return new DataForReport(yesterdayTable.keySet(), new HashSet<>(), new HashSet<>(), exceptionData);
         } else {
-            return new DataForReport(null, todayTable.keySet(), null, exceptionData);
+            return new DataForReport(new HashSet<>(), todayTable.keySet(), new HashSet<>(), exceptionData);
         }
     }
 

@@ -1,11 +1,11 @@
 package nsu.trushkov;
 
+import nsu.trushkov.builder.ReportCreator;
 import nsu.trushkov.handler.HashTableHandler;
 import nsu.trushkov.initialization.ExampleHashTableInitializer;
 import nsu.trushkov.initialization.HashTableInitializer;
 import nsu.trushkov.service.SystemMonitoring;
 import nsu.trushkov.writer.ConsoleReportWriter;
-import nsu.trushkov.writer.ReportWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,13 +26,14 @@ public class Main {
      * @param args command line arguments
      */
     public static void main(String[] args) {
+
         log.info("Application starts");
         HashTableInitializer initializer = new ExampleHashTableInitializer();
         HashTableHandler handler = new HashTableHandler();
-        ReportWriter writer = new ConsoleReportWriter();
-
+        ConsoleReportWriter writer = new ConsoleReportWriter(new ReportCreator());
         SystemMonitoring systemMonitoring = new SystemMonitoring(initializer, handler, writer);
         systemMonitoring.generateReport();
         log.info("Application ended");
     }
+
 }

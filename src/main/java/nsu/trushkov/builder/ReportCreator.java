@@ -30,11 +30,11 @@ public class ReportCreator {
         addPageInformation(data.changedUrls(), report, "\nИзменились следующие страницы:\n");
 
         addTableErrorInformation(data.exceptionData().incorrectTables(), report,
-                "К сожалению, мне были переданы не корректные данные\n");
+                "К сожалению, мне были переданы некорректные таблицы с данными\n");
         addErrorInformation(data.exceptionData().incorrectUrls(), report,
-                "Также были найдены следующие несуществующие страницы:\n");
+                "Были найдены следующие несуществующие страницы:\n");
         addErrorInformation(data.exceptionData().urlsWithIncorrectPages(), report,
-                "Мне были переданы следующие страницы с некорректным содержимыи:\n");
+                "Были переданы следующие страницы с некорректным содержимыи:\n");
 
         report.append("\nС уважением,\nавтоматизированная система мониторинга.");
 
