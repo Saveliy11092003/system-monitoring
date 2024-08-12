@@ -3,10 +3,8 @@ package nsu.trushkov;
 import nsu.trushkov.builder.ReportCreator;
 import nsu.trushkov.handler.HashTableHandler;
 import nsu.trushkov.initialization.ExampleHashTableInitializer;
-import nsu.trushkov.initialization.HashTableInitializer;
 import nsu.trushkov.service.SystemMonitoring;
 import nsu.trushkov.writer.ConsoleReportWriter;
-import nsu.trushkov.writer.ReportWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

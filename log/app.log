@@ -588,3 +588,52 @@
 2024-08-11 02:14:00,863 INFO n.t.s.SystemMonitoring [Test worker] Data for report was generated
 2024-08-11 02:14:00,863 INFO n.t.s.SystemMonitoring [Test worker] Report sent
 2024-08-11 02:14:00,905 DEBUG n.t.w.ConsoleReportWriter [Test worker] DataForReport - null
+2024-08-12 19:47:04,800 INFO n.t.Main [Test worker] Application starts
+2024-08-12 19:47:04,808 INFO n.t.s.SystemMonitoring [Test worker] Initialization of tables ended
+2024-08-12 19:47:04,810 DEBUG n.t.c.CheckerTables [Test worker] Yesterday's table - {http://example.com/page1=<html>Content 1</html>, http://example.com/page2=<html>Content 2</html>, http://example.com/page3=<html>Content 3</html>}
+2024-08-12 19:47:04,813 DEBUG n.t.c.CheckerTables [Test worker] Today's table - {http://example.com/page1=<html>New content 1</html>, http://example.com/page5=<html>Content 5</html>, http://example.com/page6=<html>Content 6</html>}
+2024-08-12 19:47:04,816 DEBUG n.t.h.HashTableHandler [Test worker] ExceptionData - ExceptionData[incorrectTables=[], incorrectUrls=[], urlsWithIncorrectPages=[]]
+2024-08-12 19:47:04,827 INFO n.t.s.SystemMonitoring [Test worker] Data for report was generated
+2024-08-12 19:47:04,827 DEBUG n.t.w.ConsoleReportWriter [Test worker] DataForReport - DataForReport[disappearedUrls=[http://example.com/page2, http://example.com/page3], appearedUrls=[http://example.com/page5, http://example.com/page6], changedUrls=[http://example.com/page1], exceptionData=ExceptionData[incorrectTables=[], incorrectUrls=[], urlsWithIncorrectPages=[]]]
+2024-08-12 19:47:04,855 INFO n.t.s.SystemMonitoring [Test worker] Report sent
+2024-08-12 19:47:04,855 INFO n.t.Main [Test worker] Application ended
+2024-08-12 19:47:04,903 DEBUG n.t.c.CheckerTables [Test worker] Yesterday's table - {http://example.com/page1=<html>New content 1</html>, http://example.com/page2=<html>Old content 2</html>, http://example.com/page3=<html>Old content 3</html>}
+2024-08-12 19:47:04,903 DEBUG n.t.c.CheckerTables [Test worker] Today's table - null
+2024-08-12 19:47:04,903 WARN n.t.c.CheckerTables [Test worker] Today's table is null
+2024-08-12 19:47:04,908 DEBUG n.t.c.CheckerTables [Test worker] Yesterday's table - {http://example.com/page2=<html>Old content 2</html>, htt://example.com/page1=<html>New content 1</html>, http://example.com/page3=<html>Old content 3</html>}
+2024-08-12 19:47:04,909 DEBUG n.t.c.CheckerTables [Test worker] Today's table - {http://example.com/page1=<html>New content 1</html>, htt://example.com/page2=<html>Old content 2</html>, http://example.com/page4=<html>New content 4</html>}
+2024-08-12 19:47:04,909 WARN n.t.c.CheckerTables [Test worker] Incorrect url - htt://example.com/page1
+2024-08-12 19:47:04,910 WARN n.t.c.CheckerTables [Test worker] Incorrect url - htt://example.com/page2
+2024-08-12 19:47:04,912 DEBUG n.t.c.CheckerTables [Test worker] Yesterday's table - null
+2024-08-12 19:47:04,913 DEBUG n.t.c.CheckerTables [Test worker] Today's table - {http://example.com/page1=<html>New content 1</html>, http://example.com/page6=<html>Old content 2</html>, http://example.com/page4=<html>New content 4</html>}
+2024-08-12 19:47:04,913 WARN n.t.c.CheckerTables [Test worker] Yesterday's table is null
+2024-08-12 19:47:04,916 DEBUG n.t.c.CheckerTables [Test worker] Yesterday's table - {http://example.com/page1=<html>New content 1</html>, http://example.com/page2=null, http://example.com/page3=<html>Old content 3</html>}
+2024-08-12 19:47:04,916 DEBUG n.t.c.CheckerTables [Test worker] Today's table - {http://example.com/page1=<html>New content 1</html>, http://example.com/page2=<html>Old content 2</html>, http://example.com/page4=null}
+2024-08-12 19:47:04,916 WARN n.t.c.CheckerTables [Test worker] Page of http://example.com/page2 is null
+2024-08-12 19:47:04,916 WARN n.t.c.CheckerTables [Test worker] Page of http://example.com/page4 is null
+2024-08-12 19:47:04,922 DEBUG n.t.c.CheckerTables [Test worker] Yesterday's table - null
+2024-08-12 19:47:04,922 DEBUG n.t.c.CheckerTables [Test worker] Today's table - null
+2024-08-12 19:47:04,922 WARN n.t.c.CheckerTables [Test worker] Yesterday's table is null
+2024-08-12 19:47:04,922 WARN n.t.c.CheckerTables [Test worker] Today's table is null
+2024-08-12 19:47:04,922 DEBUG n.t.h.HashTableHandler [Test worker] ExceptionData - ExceptionData[incorrectTables=[INCORRECT_TABLE_YESTERDAY, INCORRECT_TABLE_TODAY], incorrectUrls=[], urlsWithIncorrectPages=[]]
+2024-08-12 19:47:04,933 DEBUG n.t.c.CheckerTables [Test worker] Yesterday's table - {http://example.com/page1=<html>Content 1</html>, http://example.com/page2=<html>Content 2</html>, htt://example.com/page7=<html>Content 7</html>, htt://example.com/page9=<html>New content 9</html>, http://example.com/page8=null, http://example.com/page3=<html>Content 3</html>}
+2024-08-12 19:47:04,933 DEBUG n.t.c.CheckerTables [Test worker] Today's table - {http://example.com/page1=<html>New content 1</html>, http://example.com/page6=<html>Old content 2</html>, http://example.com/page4=<html>New content 4</html>}
+2024-08-12 19:47:04,933 WARN n.t.c.CheckerTables [Test worker] Incorrect url - htt://example.com/page7
+2024-08-12 19:47:04,934 WARN n.t.c.CheckerTables [Test worker] Incorrect url - htt://example.com/page9
+2024-08-12 19:47:04,934 WARN n.t.c.CheckerTables [Test worker] Page of http://example.com/page8 is null
+2024-08-12 19:47:04,934 DEBUG n.t.h.HashTableHandler [Test worker] ExceptionData - ExceptionData[incorrectTables=[], incorrectUrls=[htt://example.com/page7, htt://example.com/page9], urlsWithIncorrectPages=[http://example.com/page8]]
+2024-08-12 19:47:04,938 DEBUG n.t.c.CheckerTables [Test worker] Yesterday's table - {http://example.com/page1=<html>New content 1</html>, http://example.com/page6=<html>Old content 2</html>, http://example.com/page4=<html>New content 4</html>}
+2024-08-12 19:47:04,938 DEBUG n.t.c.CheckerTables [Test worker] Today's table - null
+2024-08-12 19:47:04,938 WARN n.t.c.CheckerTables [Test worker] Today's table is null
+2024-08-12 19:47:04,938 DEBUG n.t.h.HashTableHandler [Test worker] ExceptionData - ExceptionData[incorrectTables=[INCORRECT_TABLE_TODAY], incorrectUrls=[], urlsWithIncorrectPages=[]]
+2024-08-12 19:47:04,942 DEBUG n.t.c.CheckerTables [Test worker] Yesterday's table - {http://example.com/page1=<html>Content 1</html>, http://example.com/page2=<html>Content 2</html>, http://example.com/page8=<html>Content 8</html>, http://example.com/page3=<html>Content 3</html>}
+2024-08-12 19:47:04,943 DEBUG n.t.c.CheckerTables [Test worker] Today's table - {http://example.com/page1=<html>New content 1</html>, http://example.com/page8=<html>Content 8</html>, http://example.com/page6=<html>Old content 2</html>, http://example.com/page4=<html>New content 4</html>}
+2024-08-12 19:47:04,943 DEBUG n.t.h.HashTableHandler [Test worker] ExceptionData - ExceptionData[incorrectTables=[], incorrectUrls=[], urlsWithIncorrectPages=[]]
+2024-08-12 19:47:04,946 DEBUG n.t.c.CheckerTables [Test worker] Yesterday's table - null
+2024-08-12 19:47:04,946 DEBUG n.t.c.CheckerTables [Test worker] Today's table - {http://example.com/page1=<html>New content 1</html>, http://example.com/page6=<html>Old content 2</html>, http://example.com/page4=<html>New content 4</html>}
+2024-08-12 19:47:04,946 WARN n.t.c.CheckerTables [Test worker] Yesterday's table is null
+2024-08-12 19:47:04,947 DEBUG n.t.h.HashTableHandler [Test worker] ExceptionData - ExceptionData[incorrectTables=[INCORRECT_TABLE_YESTERDAY], incorrectUrls=[], urlsWithIncorrectPages=[]]
+2024-08-12 19:47:05,124 INFO n.t.s.SystemMonitoring [Test worker] Initialization of tables ended
+2024-08-12 19:47:05,126 INFO n.t.s.SystemMonitoring [Test worker] Data for report was generated
+2024-08-12 19:47:05,126 INFO n.t.s.SystemMonitoring [Test worker] Report sent
+2024-08-12 19:47:05,176 DEBUG n.t.w.ConsoleReportWriter [Test worker] DataForReport - null
